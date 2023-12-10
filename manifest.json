@@ -5,13 +5,6 @@
 	"version": "3",
 	"description": "ChromeTheme",
 	"author": "Rurendra Tegor",
-	"default_locale": "en",
-	"theme_color": "#ffffff",
-	"background_color": "#222222",
-	"display": "standalone",
-	"orientation": "portrait",
-	"scope": "/",
-	"start_url": "/",
 	"prefer_related_applications": false,
 
 	"icons": {
