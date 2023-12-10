@@ -10,18 +10,18 @@
 	"prefer_related_applications": false,
 	"icons": [
 		{
-			"src": "src/assets/favicon-128x128.png",
-			"type": "image/png",
+			"src": "icon.svg",
+			"type": "image/svg",
 			"sizes": "128x128"
 		},
 		{
-			"src": "src/assets/apple-touch-icon.png",
-			"type": "image/png",
+			"src": "icon.svg",
+			"type": "image/svg",
 			"sizes": "192x192"
 		},
 		{
-			"src": "src/assets/favicon-512x512.png",
-			"type": "image/png",
+			"src": "icon.svg",
+			"type": "image/svg",
 			"sizes": "512x512"
 		}
 	]
