@@ -1,0 +1,31 @@
+{
+	"manifest_version": 1,
+	"name": "ChromeTheme",
+	"short_name": "ChromeTheme",
+	"version": "1.0.0",
+	"description": "ChromeTheme",
+	"author": "Rurendra Tegor",
+	"default_locale": "en",
+	"theme_color": "#ffffff",
+	"background_color": "#222222",
+	"display": "standalone",
+	"orientation": "portrait",
+	"scope": "/",
+	"start_url": "/",
+	"prefer_related_applications": false,
+
+	"icons": {
+		"128": "src/assets/favicon-128x128.png",
+		"512": "src/assets/favicon-512x512.png"
+	},
+
+	"chrome_url_overrides": {
+		"newtab": "index.html"
+	},
+
+	"action": {
+		"title": "ChromeTheme"
+	},
+
+	"offline_enabled": true
+}
