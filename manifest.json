@@ -1,8 +1,8 @@
 {
-	"manifest_version": 1,
+	"manifest_version": 3,
 	"name": "ChromeTheme",
 	"short_name": "ChromeTheme",
-	"version": "1.0.0",
+	"version": "3",
 	"description": "ChromeTheme",
 	"author": "Rurendra Tegor",
 	"default_locale": "en",
