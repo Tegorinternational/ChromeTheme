@@ -5,6 +5,8 @@
 	"version": "3",
 	"description": "ChromeTheme",
 	"author": "Rurendra Tegor",
+	"scope": "/",
+	"start_url": "/",
 
 	"icons": {
 		"128": "icon.svg",
