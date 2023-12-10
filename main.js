@@ -108,35 +108,36 @@ function updateClock() {
  
  
  
-      function handleSearch(event) {
-      event.preventDefault();
-      const searchInput = document.getElementById("searchInput").value;
-      const formattedInput = formatInput(searchInput);
+function handleSearch(event) {
+  event.preventDefault();
 
-      if (isURL(formattedInput)) {
-      window.location.href = formattedInput;
-      } else {
-      const searchQuery = encodeURIComponent(formattedInput);
-      window.location.href = `https://www.google.com/search?q=${searchQuery}`;
-      }
-      }
+  const searchInput = document.getElementById("searchInput").value;
+  const formattedInput = formatInput(searchInput);
 
-      function formatInput(input) {
-      // Check if the input contains a dot
-      const hasDot = input.includes('.');
+  if (isURL(formattedInput)) {
+    window.location.href = formattedInput;
+  } else {
+    const searchQuery = encodeURIComponent(formattedInput);
+    const googleSearchURL = `https://www.google.com/search?q=${searchQuery}`;
+    window.location.href = googleSearchURL;
 
-      // Check if the input starts with a valid scheme, otherwise prepend 'http://'
-      const hasValidScheme = /^(https?|ftp):\/\//i.test(input);
+    // Alternatively, you can open the search in a new tab:
+    // window.open(googleSearchURL, '_blank');
+  }
+}
 
-      if (hasDot && !hasValidScheme) {
-      // Add 'http://' if the input contains a dot and doesn't have a valid scheme
-      return `http://${input}`;
-      } else {
-      return input;
-      }
-      }
+function formatInput(input) {
+  const hasDot = input.includes('.');
+  const hasValidScheme = /^(https?|ftp):\/\//i.test(input);
 
-      function isURL(str) {
-      const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
-      return str.match(urlRegex);
-      }
+  if (hasDot && !hasValidScheme) {
+    return `http://${input}`;
+  } else {
+    return input;
+  }
+}
+
+function isURL(str) {
+  const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+  return str.match(urlRegex);
+}
