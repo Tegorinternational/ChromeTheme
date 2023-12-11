@@ -109,35 +109,30 @@ function updateClock() {
  
  
 function handleSearch(event) {
-  event.preventDefault();
+    event.preventDefault();
+    const searchInput = document.getElementById("searchInput").value;
+    const formattedInput = formatInput(searchInput);
 
-  const searchInput = document.getElementById("searchInput").value;
-  const formattedInput = formatInput(searchInput);
-
-  if (isURL(formattedInput)) {
-    window.location.href = formattedInput;
-  } else {
-    const searchQuery = encodeURIComponent(formattedInput);
-    const googleSearchURL = `https://www.google.com/search?q=${searchQuery}`;
-    window.location.href = googleSearchURL;
-
-    // Alternatively, you can open the search in a new tab:
-    // window.open(googleSearchURL, '_blank');
-  }
+    if (isURL(formattedInput)) {
+        window.location.href = formattedInput;
+    } else {
+        const searchQuery = encodeURIComponent(formattedInput);
+        window.location.href = `https://www.google.com/search?q=${searchQuery}`;
+    }
 }
 
 function formatInput(input) {
-  const hasDot = input.includes('.');
-  const hasValidScheme = /^(https?|ftp):\/\//i.test(input);
+    const hasDot = input.includes('.');
+    const hasValidScheme = /^(https?|ftp):\/\//i.test(input);
 
-  if (hasDot && !hasValidScheme) {
-    return `http://${input}`;
-  } else {
-    return input;
-  }
+    if (hasDot && !hasValidScheme) {
+        return `http://${input}`;
+    } else {
+        return input;
+    }
 }
 
 function isURL(str) {
-  const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
-  return str.match(urlRegex);
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    return str.match(urlRegex);
 }
