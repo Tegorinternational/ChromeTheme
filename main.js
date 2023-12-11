@@ -104,9 +104,43 @@ function updateClock() {
 
       // Update the clock every second
       setInterval(updateClock, 1000);
+      
+      
+      
+      
+      
+      function handleSearch(event) {
+    event.preventDefault();
+    const searchInput = document.getElementById("searchInput").value;
+    const formattedInput = formatInput(searchInput);
+
+    if (isURL(formattedInput)) {
+        window.location.href = formattedInput;
+    } else {
+        const searchQuery = encodeURIComponent(formattedInput);
+        window.location.href = `https://www.google.com/search?q=${searchQuery}`;
+    }
+}
+
+function formatInput(input) {
+    const hasDot = input.includes('.');
+    const hasValidScheme = /^(https?|ftp):\/\//i.test(input);
+
+    if (hasDot && !hasValidScheme) {
+        return `http://${input}`;
+    } else {
+        return input;
+    }
+}
+
+function isURL(str) {
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    return str.match(urlRegex);
+}
+
  
  
- 
+/* 
  
 function handleSearch(event) {
     event.preventDefault();
@@ -136,3 +170,4 @@ function isURL(str) {
     const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
     return str.match(urlRegex);
 }
+*/
