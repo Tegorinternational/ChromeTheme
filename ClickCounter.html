@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click and Window Change Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 0px;
+      margin: 0px;
+      text-align: left;
+    }
+    .counter {
+      font-size: 24px;
+      padding-left: 20px;
+      display: inline-block;
+    }
+    button {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="counter" id="clickCounter">
+    <div id="clickableArea">
+      Connected calls
+    </div>
+    <p id="clickCount">0</p>
+    
+    <button id="decrementClick">-</button>
+    <button id="incrementClick">+</button>
+  </div>
+
+  <div class="counter" id="windowChangeCounter">
+    <p>All calls</p>
+    <p id="windowChangeCount">0</p>
+    <button id="decrementWindowChange">-</button>
+    <button id="incrementWindowChange">+</button>
+  </div>
+
+  <script>
+    // Function to save counts in local storage
+    function saveCounts() {
+      localStorage.setItem('clickCount', clickCount);
+      localStorage.setItem('windowChangeCount', windowChangeCount);
+    }
+
+    // Function to load counts from local storage
+    function loadCounts() {
+      clickCount = parseInt(localStorage.getItem('clickCount')) || 0;
+      windowChangeCount = parseInt(localStorage.getItem('windowChangeCount')) || 0;
+
+      clickCountElement.textContent = clickCount;
+      windowChangeCountElement.textContent = windowChangeCount;
+    }
+
+    // Click Counter
+    let clickCount = 0;
+    const clickCountElement = document.getElementById('clickCount');
+    const clickableArea = document.getElementById('clickableArea');
+
+    clickableArea.addEventListener('click', () => {
+      clickCount++;
+      clickCountElement.textContent = clickCount;
+      saveCounts();
+    });
+
+    document.getElementById('decrementClick').addEventListener('click', () => {
+      clickCount = Math.max(0, clickCount - 1);
+      clickCountElement.textContent = clickCount;
+      saveCounts();
+    });
+
+    document.getElementById('incrementClick').addEventListener('click', () => {
+      clickCount++;
+      clickCountElement.textContent = clickCount;
+      saveCounts();
+    });
+
+    // Window Change Counter
+    let windowChangeCount = 0;
+    const windowChangeCountElement = document.getElementById('windowChangeCount');
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        windowChangeCount++;
+        windowChangeCountElement.textContent = windowChangeCount;
+        saveCounts();
+      }
+    });
+
+    document.getElementById('decrementWindowChange').addEventListener('click', () => {
+      windowChangeCount = Math.max(0, windowChangeCount - 1);
+      windowChangeCountElement.textContent = windowChangeCount;
+      saveCounts();
+    });
+
+    document.getElementById('incrementWindowChange').addEventListener('click', () => {
+      windowChangeCount++;
+      windowChangeCountElement.textContent = windowChangeCount;
+      saveCounts();
+    });
+
+    // Load counts on page load
+    loadCounts();
+  </script>
+</body>
+</html>
