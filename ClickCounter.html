@@ -82,11 +82,15 @@
     let windowChangeCount = 0;
     const windowChangeCountElement = document.getElementById('windowChangeCount');
 
+    function incrementWindowChangeCount() {
+      windowChangeCount++;
+      windowChangeCountElement.textContent = windowChangeCount;
+      saveCounts();
+    }
+
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
-        windowChangeCount++;
-        windowChangeCountElement.textContent = windowChangeCount;
-        saveCounts();
+        incrementWindowChangeCount();
       }
     });
 
@@ -97,13 +101,16 @@
     });
 
     document.getElementById('incrementWindowChange').addEventListener('click', () => {
-      windowChangeCount++;
-      windowChangeCountElement.textContent = windowChangeCount;
-      saveCounts();
+      incrementWindowChangeCount();
     });
 
     // Load counts on page load
     loadCounts();
+
+    // Increment counts when the window gains focus
+    window.addEventListener('focus', () => {
+      incrementWindowChangeCount();
+    });
   </script>
 </body>
 </html>
